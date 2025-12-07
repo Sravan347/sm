@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api", contactRoute);
 app.use("/api", jobs);
-app.use("/api", applyRoute);
+app.use("/api/", applyRoute);
 
 // Database + Server Start
 const PORT = process.env.PORT || 3000;

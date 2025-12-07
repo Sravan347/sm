@@ -1,35 +1,39 @@
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const connectdb = require('./config/db');
-const contactRoute = require('./routes/contactRoute');
+const connectdb = require("./config/db");
+const contactRoute = require("./routes/contactRoute");
+const jobs = require("./routes/jobs");
+const applyRoute = require("./routes/applicant");
 
 // Routes
-const authRoute = require('./routes/authRoute');
+const authRoute = require("./routes/authRoute");
 
 // Middlewares
 app.use(express.json());
 
 // Default route
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 // API Routes
-app.use('/api/auth', authRoute);
-app.use('/api', contactRoute);
+app.use("/api/auth", authRoute);
+app.use("/api", contactRoute);
+app.use("/api", jobs);
+app.use("/api", applyRoute);
 
 // Database + Server Start
 const PORT = process.env.PORT || 3000;
 
 connectdb(process.env.MONGO_URL)
-    .then(() => {
-        console.log('Database connected');
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
-    })
-    .catch(err => {
-        console.error('DB Connection Error:', err);
-        process.exit(1); // stop server if DB fails
+  .then(() => {
+    console.log("Database connected");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
+  })
+  .catch((err) => {
+    console.error("DB Connection Error:", err);
+    process.exit(1); // stop server if DB fails
+  });

@@ -5,11 +5,19 @@ const connectdb = require("./config/db");
 const contactRoute = require("./routes/contactRoute");
 const jobs = require("./routes/jobs");
 const applyRoute = require("./routes/applicant");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 // Routes
 const authRoute = require("./routes/authRoute");
+// ---------- MIDDLEWARES (TOP) ----------
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 
 // Middlewares
+app.use(cookieParser());
 app.use(express.json());
 
 // Default route
@@ -24,7 +32,7 @@ app.use("/api", jobs);
 app.use("/api/", applyRoute);
 
 // Database + Server Start
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 connectdb(process.env.MONGO_URL)
   .then(() => {

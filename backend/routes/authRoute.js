@@ -1,24 +1,20 @@
-const router = require("express").Router();
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const Admin = require("../models/Admin");
+const express = require("express");
+const router = express.Router();
+const { login, logout } = require("../controllers/adminAuth"); 
+const rateLimit = require("express-rate-limit"); 
 
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  const admin = await Admin.findOne({ email });
-  if (!admin) return res.status(400).json({ message: "Invalid credentials" });
-
-  const isMatch = await bcrypt.compare(password, admin.passwordHash);
-  if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
-
-  const token = jwt.sign(
-    { id: admin._id },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" }
-  );
-
-  res.json({ token });
+// Limit: 5 attempts per 15 minutes per IP
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 2, // Max 5 requests
+  message: {
+    message: "Too many login attempts, please try again after 15 minutes",
+  },
+  standardHeaders: true, // Return rate limit info in headers
+  legacyHeaders: false,  // Disable `X-RateLimit-*` headers
 });
+// Admin Auth Routes
+router.post("/login", loginLimiter, login);       // POST /api/auth/login
+router.post("/logout", logout);
 
 module.exports = router;

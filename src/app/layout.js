@@ -21,11 +21,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
+<html lang="en">
+      <body className="bg-black text-white">
+
+        {/* Fixed Navbar */}
         <Header />
-        {children}
+
+        {/* 🔒 Prevent overlap + bleed */}
+        <main className="pt-24 ">
+          {children}
+        </main>
+
         <Footer />
+
       </body>
     </html>
   );

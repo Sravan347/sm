@@ -13,7 +13,8 @@ exports.createJob = async (req, res) => {
 
 exports.updateJob = async (req, res) => {
   try {
-    const job = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true });
+   const job = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
 
     res.json({ success: true, job });
   } catch (err) {
@@ -33,8 +34,12 @@ exports.deleteJob = async (req, res) => {
 
 
 exports.getActiveJobs = async (req, res) => {
-  const jobs = await Job.find({ status: true }).sort({ createdAt: -1 });
-  res.json({ success: true, jobs });
+  try {
+    const jobs = await Job.find().sort({ createdAt: -1 }); // no status filter
+    res.json({ success: true, jobs });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
 };
 
 

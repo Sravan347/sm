@@ -27,7 +27,7 @@ export default function Header() {
 
         {/* Logo */}
         <div className="text-4xl font-semibold bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
-          Space Motivate
+           <Link href="/" className="hover:text-orange-400">Space Motivate</Link>
         </div>
 
         {/* Nav Links */}
@@ -36,6 +36,7 @@ export default function Header() {
           <Link href="/services" className="hover:text-orange-400">Services</Link>
           <Link href="/projects" className="hover:text-orange-400">Projects</Link>
           <Link href="/events" className="hover:text-orange-400">Events</Link>
+          <Link href="/contact" className="hover:text-orange-400">Contact</Link>
         </nav>
 
         {/* Icons */}

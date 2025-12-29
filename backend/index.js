@@ -21,9 +21,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Default route
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+
 
 // API Routes
 app.use("/api/auth", authRoute);

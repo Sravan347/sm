@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Menu, Search, User } from "lucide-react";
@@ -20,10 +19,11 @@ export default function Header() {
         fixed top-0 left-0 w-full z-50
         transition-all duration-300
         ${scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"}
-        hover:bg-black/80 hover:backdrop-blur-md
+         hover:bg-black/80 hover:backdrop-blur-md
       `}
+      style={{ height: "96px" }} // 👈 FIXED HEIGHT
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
 
         {/* Logo */}
         <div className="text-4xl font-semibold bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
@@ -45,7 +45,7 @@ export default function Header() {
           <User className="cursor-pointer hover:text-orange-400" />
         </div>
 
-        {/* Mobile Menu Icon */}
+        {/* Mobile Menu */}
         <div className="md:hidden text-white">
           <Menu className="cursor-pointer" />
         </div>
@@ -54,4 +54,3 @@ export default function Header() {
     </header>
   );
 }
-

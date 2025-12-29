@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { login, logout } = require("../controllers/adminAuth"); 
 const rateLimit = require("express-rate-limit"); 
+const adminAuth = require("../middleware/middleware");
 
 // Limit: 5 attempts per 15 minutes per IP
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 2, // Max 5 requests
+  max: 10, // Max 5 requests
   message: {
     message: "Too many login attempts, please try again after 15 minutes",
   },
@@ -14,6 +15,9 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,  // Disable `X-RateLimit-*` headers
 });
 // Admin Auth Routes
+router.get('/check-auth', adminAuth, (req, res) => {
+  res.json({ success: true, admin: req.admin });
+});
 router.post("/login", loginLimiter, login);       // POST /api/auth/login
 router.post("/logout", logout);
 

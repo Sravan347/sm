@@ -25,8 +25,8 @@ const login=async (req, res) => {
 
     res.cookie("admin_token", token, {
       httpOnly: true,
-      secure: false,       // true in production (HTTPS)
-      sameSite: "lax",
+        secure: process.env.NODE_ENV === "production", // HTTPS only in prod
+  sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
       maxAge: 24 * 60 * 60 * 1000,
     });
 

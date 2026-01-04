@@ -10,7 +10,7 @@ export default function AdminLogin() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const redirect = searchParams.get("redirect") || "/admin-7qwx/dashboard";
+  const redirect = searchParams.get("redirect") || "/admin-7qwx/smDashboard";
 
   const handleLogin = async (e) => {
     e.preventDefault();

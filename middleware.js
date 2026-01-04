@@ -1,26 +1,35 @@
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  const { pathname, searchParams } = request.nextUrl;
+  const { pathname } = request.nextUrl;
 
-  const isAdminRoute = pathname.startsWith("/admin-qwe");
-  const isLoginPage = pathname === "/admin-qwe/login";
+  // Admin routes & login page
+  const isAdminRoute = pathname.startsWith("/admin-7qwx");
+  const isLoginPage = pathname === "/admin-7qwx/login";
 
-  const auth = request.cookies.get("admin_auth");
+  // Cookie set by backend
+  const adminToken = request.cookies.get("admin_token")?.value;
 
-  // If admin route & not logged in → redirect to login
-  if (isAdminRoute && !auth && !isLoginPage) {
+  // 1️⃣ Protect admin routes (redirect to login if not authenticated)
+  if (isAdminRoute && !adminToken && !isLoginPage) {
     const loginUrl = new URL("/admin-7qwx/login", request.url);
+    // Set redirect to original requested path
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // If already logged in & trying to access login → go to dashboard
-  if (isLoginPage && auth) {
+  // 2️⃣ Prevent logged-in admin from visiting login page
+  if (isLoginPage && adminToken) {
+    // Redirect to dashboard (or you can change this to /fake if you want)
     return NextResponse.redirect(
-      new URL("/admin-7qwx/dashboard", request.url)
+      new URL("/admin-7qwx/smDashboard", request.url)
     );
   }
 
   return NextResponse.next();
 }
+
+// Apply middleware to all admin routes
+export const config = {
+  matcher: ["/admin-7qwx/:path*"],
+};

@@ -35,3 +35,12 @@ body {
 .animate-fade-in {
   animation: fade-in 1s ease-in-out;
 }
+/* Add to your global.css or tailwind config */
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+      linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}

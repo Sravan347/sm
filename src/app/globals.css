@@ -44,3 +44,6 @@ body {
     background-size: 50px 50px;
   }
 }
+html {
+  scroll-behavior: smooth;
+}

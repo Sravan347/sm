@@ -39,68 +39,67 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <main className="bg-white text-gray-800">
-      {/* Hero Section */}
-      <section className="bg-gray-100 py-20">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Our Projects
-          </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            A showcase of our thoughtfully designed interiors, smart planning,
-            and quality-driven execution.
-          </p>
-        </div>
+    <main className="bg-[#faf9f7] text-neutral-900">
+      {/* HERO */}
+      <section className="mx-auto max-w-7xl px-6 pt-28 pb-24 text-center">
+        <h1 className="font-serif text-[2.5rem] leading-tight tracking-tight sm:text-[3rem] md:text-[3.75rem]">
+          Our Projects
+        </h1>
+        <p className="mt-8 max-w-2xl mx-auto text-neutral-600 leading-relaxed sm:text-lg">
+          A curated selection of interior projects shaped by clarity,
+          craftsmanship, and thoughtful execution.
+        </p>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group bg-white border rounded-xl overflow-hidden hover:shadow-lg transition"
-              >
-                <div className="relative h-64 w-full">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition duration-300"
-                  />
-                </div>
-
-                <div className="p-6">
-                  <span className="text-sm text-gray-500">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold mt-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 mt-3">
-                    {project.description}
-                  </p>
-                </div>
+      {/* PROJECTS GRID */}
+      <section className="mx-auto max-w-7xl px-6 pb-24">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <article
+              key={project.title}
+              className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition hover:bg-neutral-50"
+            >
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                />
               </div>
-            ))}
-          </div>
+
+              <div className="p-7">
+                <span className="text-xs uppercase tracking-wider text-neutral-500">
+                  {project.category}
+                </span>
+
+                <h2 className="mt-3 font-serif text-lg tracking-tight text-neutral-900">
+                  {project.title}
+                </h2>
+
+                <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+                  {project.description}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="bg-gray-100 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-semibold mb-6">
-            Have a Project in Mind?
-          </h2>
-          <p className="text-gray-600 mb-8">
-            Let Spacemotivate design and execute your space with creativity,
-            precision, and care.
-          </p>
+      {/* CTA */}
+      <section className="bg-white py-28 text-center">
+        <h2 className="font-serif text-2xl tracking-tight sm:text-3xl">
+          Have a project in mind?
+        </h2>
+        <p className="mt-6 max-w-xl mx-auto text-neutral-600">
+          Let Spacemotivate design and execute your space with precision,
+          creativity, and care.
+        </p>
+
+        <div className="mt-10">
           <a
             href="/contact"
-            className="inline-block bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition"
+            className="inline-flex items-center justify-center rounded-xl bg-neutral-900 px-8 py-3 text-sm font-medium text-white transition hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-neutral-900"
           >
             Start Your Project
           </a>

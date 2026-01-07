@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -21,19 +20,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-<html lang="en">
+    <html lang="en">
       <body className="bg-black text-white">
+        {/* global subtle grid (single instance) */}
+        <div
+          aria-hidden
+          className="hidden lg:block fixed inset-0 pointer-events-none -z-10 bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:64px_64px]"
+        />
 
         {/* Fixed Navbar */}
         <Header />
 
         {/* 🔒 Prevent overlap + bleed */}
-        <main className="pt-24 ">
-          {children}
-        </main>
+        <main className="pt-24 ">{children}</main>
 
         <Footer />
-
       </body>
     </html>
   );

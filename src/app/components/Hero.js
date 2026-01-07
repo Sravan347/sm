@@ -6,16 +6,10 @@ import Link from "next/link";
 export default function HeroSection() {
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#faf9f7]"
+      className="relative isolate overflow-hidden w-full bg-[#faf9f7]"
       aria-label="Architectural studio hero section"
     >
-      {/* subtle grid background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:64px_64px]"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6 pt-32 pb-28 lg:pt-44 lg:pb-36">
+      <div className="relative mx-auto max-w-7xl px-6 pt-32 pb-28 lg:pt-44 lg:pb-36 text-center lg:text-left">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,15 +28,15 @@ export default function HeroSection() {
           transition={{ delay: 0.15, duration: 0.6 }}
           className="mt-8 max-w-xl text-base leading-relaxed text-neutral-600 sm:text-lg"
         >
-          Clean geometry, sustainable thinking, and spaces that feel
-          effortless—architecture that lasts beyond trends.
+          Clean geometry, sustainable thinking, and spaces that feel effortless
+          — architecture that lasts beyond trends.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
-          className="mt-12 flex flex-wrap items-center gap-4"
+          className="mt-12 flex flex-wrap justify-center lg:justify-start items-center gap-4"
         >
           <Link
             href="/projects"

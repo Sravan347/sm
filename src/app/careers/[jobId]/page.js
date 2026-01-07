@@ -27,12 +27,6 @@ export default function JobDetailsPage() {
     <main className="bg-[#faf9f7] text-neutral-900">
       {/* HERO + GRID */}
       <section className="relative overflow-hidden py-28">
-        {/* subtle grid background */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:64px_64px]"
-        />
-
         <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-start gap-20 px-6 lg:grid-cols-2">
           {/* LEFT — JOB DETAILS */}
           <motion.div

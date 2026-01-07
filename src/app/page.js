@@ -9,15 +9,15 @@ import ProjectsPage from "./projects/page";
 const HomePage = () => {
   return (
     <div>
-      <section id="home">
+      <section id="home" className="relative isolate overflow-hidden">
         <Hero />
       </section>
 
-      <section id="about">
+      <section id="about" >
         <AboutPage />
       </section>
 
-      <section id="services">
+      <section id="services" >
         <ServicesSlider />
       </section>
 
@@ -28,7 +28,7 @@ const HomePage = () => {
         <EventsPage />
       </section>
 
-      <section id="contact">
+      <section id="contact" className="relative isolate">
         <ContactPage />
       </section>
     </div>

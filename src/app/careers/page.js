@@ -22,12 +22,6 @@ export default function CareersPage() {
     <main className="bg-[#faf9f7] text-neutral-900">
       {/* HERO */}
       <section className="relative overflow-hidden py-24">
-        {/* subtle grid background */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:64px_64px]"
-        />
-
         <div className="relative mx-auto max-w-4xl px-6">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

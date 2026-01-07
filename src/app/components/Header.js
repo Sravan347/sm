@@ -22,7 +22,16 @@ export default function Header() {
     { id: "projects", label: "Projects"},
     { id: "events", label: "Events"},
     { id: "contact", label: "Contact" },
+    // Route item
+  { id: "careers", label: "Careers", href: "/careers" },
   ];
+
+  useEffect(() => {
+  if (pathname === "/careers") {
+    setActive("careers");
+  }
+}, [pathname]);
+
 
   /* -------------------------------------------
      FORCE SCROLL TO TOP ON PAGE NAVIGATION

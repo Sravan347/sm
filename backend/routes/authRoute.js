@@ -7,7 +7,7 @@ const adminAuth = require("../middleware/middleware");
 // Limit: 5 attempts per 15 minutes per IP
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // Max 5 requests
+  max: 5, // Max 5 requests
   message: {
     message: "Too many login attempts, please try again after 15 minutes",
   },

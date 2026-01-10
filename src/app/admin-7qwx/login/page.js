@@ -1,16 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const [redirect, setRedirect] = useState("/admin-7qwx/smDashboard");
 
-  const redirect = searchParams.get("redirect") || "/admin-7qwx/smDashboard";
+  useEffect(() => {
+    try {
+      const sp = new URLSearchParams(window.location.search);
+      const r = sp.get("redirect");
+      if (r) setRedirect(r);
+    } catch (err) {
+      // ignore
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -45,12 +53,15 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-[#1D1D1F] text-[#F2F2F7] font-sans overflow-hidden">
       {/* Hide any navigation bars that might be showing */}
       <style jsx global>{`
-        nav, header, .navbar {
+        nav,
+        header,
+        .navbar {
           display: none !important;
         }
-        
+
         /* Hide any global background text */
-        body::before, body::after {
+        body::before,
+        body::after {
           content: none !important;
         }
       `}</style>
@@ -66,27 +77,27 @@ export default function AdminLogin() {
                 "url('https://images.unsplash.com/photo-1487956382158-bb926046304a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
             }}
           />
-          
+
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/80" />
-          
+
           {/* Content */}
           <div className="relative h-full flex flex-col p-6 lg:p-8 z-10">
             {/* Logo/Brand - Fixed to not look like checkbox */}
             <div className="flex items-center space-x-3 mb-6">
               <div className="relative group">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5AC8FA]/20 to-[#5AC8FA]/5 border border-[#5AC8FA]/30 flex items-center justify-center backdrop-blur-sm shadow-lg group-hover:scale-105 transition-transform duration-200">
-                  <svg 
-                    className="w-5 h-5 text-[#5AC8FA]" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <svg
+                    className="w-5 h-5 text-[#5AC8FA]"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={1.8} 
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.8}
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                     />
                   </svg>
                   {/* Decorative dot */}
@@ -94,8 +105,12 @@ export default function AdminLogin() {
                 </div>
               </div>
               <div>
-                <span className="font-semibold text-lg tracking-tight block">Space Motivate</span>
-                <span className="text-xs text-gray-400">Architectural Portal</span>
+                <span className="font-semibold text-lg tracking-tight block">
+                  Space Motivate
+                </span>
+                <span className="text-xs text-gray-400">
+                  Architectural Portal
+                </span>
               </div>
             </div>
 
@@ -109,20 +124,37 @@ export default function AdminLogin() {
                 </span>
               </h1>
               <p className="text-gray-300 text-sm lg:text-base max-w-md leading-relaxed">
-                Secure access to your dashboard with precision engineering and elegant design.
+                Secure access to your dashboard with precision engineering and
+                elegant design.
               </p>
-              
+
               {/* Feature List */}
               <div className="space-y-2 mt-4">
                 <div className="flex items-center space-x-2 text-gray-400 text-sm">
-                  <svg className="w-4 h-4 text-[#32D74B]" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4 text-[#32D74B]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   <span>Precision engineering</span>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-400 text-sm">
-                  <svg className="w-4 h-4 text-[#32D74B]" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4 text-[#32D74B]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   <span>Enterprise security</span>
                 </div>
@@ -134,9 +166,7 @@ export default function AdminLogin() {
               <p className="text-xs text-gray-400 mb-1">
                 Modern architecture — Designed for purpose
               </p>
-              <p className="text-xs text-gray-500">
-                localhost:3000/admin-7qwx
-              </p>
+              <p className="text-xs text-gray-500">localhost:3000/admin-7qwx</p>
             </div>
           </div>
         </div>
@@ -166,13 +196,23 @@ export default function AdminLogin() {
                     </svg>
                     {/* Status indicator */}
                     <div className="absolute -top-1 -right-1 w-5 h-5 bg-[#32D74B] rounded-full border-2 border-[#2C2C2E] flex items-center justify-center">
-                      <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      <svg
+                        className="w-2.5 h-2.5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
                       </svg>
                     </div>
                   </div>
                 </div>
-                <h2 className="text-2xl font-light tracking-tight mb-1">Welcome Back</h2>
+                <h2 className="text-2xl font-light tracking-tight mb-1">
+                  Welcome Back
+                </h2>
                 <p className="text-gray-400 text-sm">
                   Sign in to your admin account
                 </p>
@@ -218,15 +258,22 @@ export default function AdminLogin() {
                       id="remember"
                       className="w-4 h-4 bg-[#1D1D1F] border border-white/20 rounded focus:ring-[#5AC8FA]/30 focus:ring-2 checked:bg-[#5AC8FA] checked:border-[#5AC8FA] appearance-none"
                     />
-                    <svg 
-                      className="absolute left-0 top-0 w-4 h-4 pointer-events-none opacity-0 checked:opacity-100 transition-opacity duration-200" 
-                      fill="currentColor" 
+                    <svg
+                      className="absolute left-0 top-0 w-4 h-4 pointer-events-none opacity-0 checked:opacity-100 transition-opacity duration-200"
+                      fill="currentColor"
                       viewBox="0 0 20 20"
                     >
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                  <label htmlFor="remember" className="ml-2 text-xs text-gray-300 cursor-pointer">
+                  <label
+                    htmlFor="remember"
+                    className="ml-2 text-xs text-gray-300 cursor-pointer"
+                  >
                     Keep me signed in
                   </label>
                 </div>
@@ -239,9 +286,25 @@ export default function AdminLogin() {
                 >
                   {isLoading ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Signing in...
                     </>
@@ -266,10 +329,12 @@ export default function AdminLogin() {
                       />
                     </svg>
                     <div>
-                      <h4 className="text-xs font-medium text-gray-300 mb-1">Security Notice</h4>
+                      <h4 className="text-xs font-medium text-gray-300 mb-1">
+                        Security Notice
+                      </h4>
                       <p className="text-xs text-gray-400 leading-relaxed">
-                        For security, please log out and close your browser after each session.
-                        Access is monitored and logged.
+                        For security, please log out and close your browser
+                        after each session. Access is monitored and logged.
                       </p>
                     </div>
                   </div>
@@ -280,7 +345,10 @@ export default function AdminLogin() {
               <div className="mt-8 pt-4 border-t border-white/10">
                 <div className="text-center">
                   <p className="text-xs text-gray-400">
-                    Need help? <span className="text-[#5AC8FA] cursor-pointer hover:text-[#5AC8FA]/80 transition-colors">Contact support</span>
+                    Need help?{" "}
+                    <span className="text-[#5AC8FA] cursor-pointer hover:text-[#5AC8FA]/80 transition-colors">
+                      Contact support
+                    </span>
                   </p>
                   <p className="text-xs text-gray-500 mt-2">
                     © {new Date().getFullYear()} Admin Portal v2.0
